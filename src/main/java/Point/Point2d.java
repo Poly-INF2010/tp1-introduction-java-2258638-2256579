@@ -4,21 +4,22 @@ public class Point2d extends AbstractPoint {
     private final Integer X = 0;
     private final Integer Y = 1;
 
-    /** TODO
+    /**
      * 2D Point Constructor from coordinates
      * @param x X coordinate
      * @param y Y coordinate
      */
     public Point2d(Double x, Double y) {
-        super(new double[] {0.0, 0.0});
+
+        super(new double[] {x, y});
     }
 
-    /** TODO
+    /**
      * 2D Point Constructor from vector
      * @param vector Vector containing X and Y coordinates
      */
     public Point2d(Double[] vector) {
-        this(0.0, 0.0);
+        this(vector[0], vector[1]);
     }
 
     /**
@@ -38,6 +39,7 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d translate(Double[] translateVector) {
+
         return null;
     }
 
@@ -47,6 +49,7 @@ public class Point2d extends AbstractPoint {
      * @return Translated point
      */
     public Point2d translate(Point2d translateVector) {
+        PointOperator.translate(vector, translateVector.vector);
         return null;
     }
 
