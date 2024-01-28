@@ -32,25 +32,25 @@ public class Point2d extends AbstractPoint {
      */
     public double Y() { return vector[Y];}
 
-    /** TODO
+    /**
      * Translate the point by the given vector
      * @param translateVector The vector by which to translate
      * @return Translated point
      */
     @Override
     public Point2d translate(Double[] translateVector) {
-
-        return null;
+        PointOperator.translate(this.vector, translateVector);
+        return this;
     }
 
-    /** TODO
+    /**
      * Translate the point by the given 2D Point
      * @param translateVector The 2D Point by which to translate
      * @return Translated point
      */
     public Point2d translate(Point2d translateVector) {
         PointOperator.translate(vector, translateVector.vector);
-        return null;
+        return this;
     }
 
     /** TODO
@@ -60,7 +60,8 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d rotate(Double[][] rotationMatrix) {
-        return null;
+        PointOperator.rotate(this.vector, rotationMatrix);
+        return this;
     }
 
     /** TODO
@@ -69,37 +70,46 @@ public class Point2d extends AbstractPoint {
      * @return Rotated point
      */
     public Point2d rotate(Double angle) {
-        return null;
+        double temp;
+        temp = this.vector[0];
+
+        this.vector[0] = temp * Math.cos(angle) - this.vector[1] * Math.sin(angle);
+        this.vector[1] = this.vector[1] * Math.cos(angle) + temp * Math.sin(angle);
+
+        return this;
     }
 
-    /** TODO
+    /**
      * Divide the X and Y coordinates of a 2D point by a scalar
      * @param divider Scalar used to divide
      * @return Divided point
      */
     @Override
     public Point2d divide(Double divider) {
-        return null;
+        PointOperator.divide(this.vector, divider);
+        return this;
     }
 
-    /** TODO
+    /**
      * Multiply the X and Y coordinates of a 2D point by a scalar
      * @param multiplier Scalar used to multiply
      * @return Multiplied point
      */
     @Override
     public Point2d multiply(Double multiplier) {
-        return null;
+        PointOperator.multiply(this.vector, multiplier);
+        return this;
     }
 
-    /** TODO
+    /**
      * Add a scalar to the X and Y coordinates of a 2D point
      * @param adder Scalar to add
      * @return Added point
      */
     @Override
     public Point2d add(Double adder) {
-        return null;
+        PointOperator.add(this.vector, adder);
+        return this;
     }
 
     /** TODO
@@ -107,6 +117,11 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d clone() {
-        return null;
+        Double[] clone = new Double[vector.length];
+
+        System.arraycopy(this.vector, 0, clone, 0, vector.length);
+        Point2d newClone = new Point2d(clone);
+
+        return newClone;
     }
 }
