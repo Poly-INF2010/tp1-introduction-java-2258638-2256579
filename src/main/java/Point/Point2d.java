@@ -53,7 +53,7 @@ public class Point2d extends AbstractPoint {
         return this;
     }
 
-    /** TODO
+    /**
      * Rotate the point by the given rotation Matrix
      * @param rotationMatrix Matrix by which to rotate
      * @return Rotated point
@@ -64,7 +64,7 @@ public class Point2d extends AbstractPoint {
         return this;
     }
 
-    /** TODO
+    /**
      * Rotate the point by the given angle
      * @param angle Angle in radians
      * @return Rotated point
