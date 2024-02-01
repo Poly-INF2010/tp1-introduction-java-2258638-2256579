@@ -2,7 +2,6 @@ package Letter;
 
 import Point.Point2d;
 import Shape.*;
-import org.w3c.dom.css.Rect;
 
 
 public final class LetterFactory {
