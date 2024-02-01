@@ -2,6 +2,7 @@ package Letter;
 
 import Point.Point2d;
 import Shape.*;
+import org.w3c.dom.css.Rect;
 
 
 public final class LetterFactory {
@@ -13,27 +14,30 @@ public final class LetterFactory {
     final static Double halfStripeThickness = stripeThickness / 2;
 
 
-    /** TODO
+    /**
      * Create the letter A graphically
      * @return BaseShape containing the letter A
      */
     public static BaseShape create_A()  {
         BaseShape a = new BaseShape();
 
-        Rectangle rectangleHor = new Rectangle(halfMaxWidth, halfStripeThickness);
-        a.add(rectangleHor);
+        Rectangle horizontalStripe = new Rectangle(30.0, halfStripeThickness);
+        a.add(horizontalStripe);
 
-        Rectangle rectangleDia = new Rectangle(halfStripeThickness, maxHeight);
-        rectangleDia.rotate(rectangleDia.getCoords(), (7*Math.PI)/4);
-        a.add(rectangleDia);
+        Rectangle leftStripe = new Rectangle(halfStripeThickness, 153.0);
+        leftStripe.rotate(leftStripe.getCoords(), 0.2);
+        leftStripe.translate(leftStripe.getCoords(), new Point2d(-halfMaxWidth/2, 0.0));
+        a.add(leftStripe);
 
-        rectangleDia.rotate(rectangleDia.getCoords(), (-13*Math.PI)/4);
-        rectangleDia.translate(rectangleDia.getCoords(), new Point2d(-halfMaxWidth, 0.0));
+        Rectangle rightStripe = new Rectangle(halfStripeThickness, 153.0);
+        rightStripe.rotate(rightStripe.getCoords(), -0.2);
+        rightStripe.translate(rightStripe.getCoords(), new Point2d(halfMaxWidth/2, 0.0));
+        a.add(rightStripe);
 
         return a;
     }
 
-    /** TODO
+    /**
      * Create the letter B graphically
      * @return BaseShape containing the letter B
      */
@@ -45,20 +49,20 @@ public final class LetterFactory {
         bigCircle.translate(bigCircle.getCoords(), new Point2d(0.0, -halfMaxHeight));
         b.add(bigCircle);
 
-        Circle smallCircle = new Circle(halfMaxHeight/2);
+        Circle smallCircle = new Circle(halfMaxHeight - stripeThickness);
         smallCircle.translate(smallCircle.getCoords(), new Point2d(0.0, halfMaxHeight/2));
         b.remove(smallCircle);
         smallCircle.translate(smallCircle.getCoords(), new Point2d(0.0,-halfMaxHeight ));
         b.remove(smallCircle);
 
         Rectangle stripe = new Shape.Rectangle(stripeThickness, maxHeight);
-        stripe.translate(stripe.getCoords(), new Point2d(halfMaxWidth, 0.0));
+        stripe.translate(stripe.getCoords(), new Point2d(-halfMaxWidth, 0.0));
         b.add(stripe);
 
         return b;
     }
 
-    /** TODO
+    /**
      * Create the letter C graphically
      * @return BaseShape containing the letter C
      */
@@ -67,7 +71,7 @@ public final class LetterFactory {
         Ellipse bigO = new Ellipse(maxWidth, maxHeight);
         Ellipse smallO = new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness);
         c.add(bigO).remove(smallO);
-        Rectangle emptyLeft = new Rectangle(stripeThickness, halfMaxHeight);
+        Rectangle emptyLeft = new Rectangle(stripeThickness*2, halfMaxHeight);
         emptyLeft.translate(emptyLeft.getCoords(), new Point2d(halfMaxWidth-halfStripeThickness,0.0));
         c.remove(emptyLeft);
         return c;
@@ -80,40 +84,35 @@ public final class LetterFactory {
     public static BaseShape create_E() {
         BaseShape e = new BaseShape();
 
-        Rectangle rectangleHor = new Rectangle(maxWidth, stripeThickness);
-        rectangleHor.translate(rectangleHor.getCoords(), new Point2d(-halfMaxWidth, halfMaxHeight - stripeThickness));
-        e.add(rectangleHor);
+        Rectangle horizontalStripe = new Rectangle(maxWidth, halfStripeThickness);
+        e.add(horizontalStripe);
+        horizontalStripe.translate(horizontalStripe.getCoords(), new Point2d(0.0, halfMaxHeight - halfStripeThickness/2));
+        e.add(horizontalStripe);
+        horizontalStripe.translate(horizontalStripe.getCoords(), new Point2d(0.0, -maxHeight + halfStripeThickness));
+        e.add(horizontalStripe);
 
-        rectangleHor.translate(rectangleHor.getCoords(), new Point2d(0.0, -halfMaxHeight));
-        e.add(rectangleHor);
-
-        rectangleHor.translate(rectangleHor.getCoords(), new Point2d(0.0, -halfMaxHeight));
-        e.add(rectangleHor);
-
-        Rectangle rectangleVer = new Rectangle(halfStripeThickness, maxHeight);
-        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(halfMaxWidth, 0.0));
-        e.add(rectangleVer);
-
+        Rectangle verticalStripe = new Rectangle(halfStripeThickness, maxHeight);
+        verticalStripe.translate(verticalStripe.getCoords(), new Point2d(-halfMaxWidth + halfStripeThickness/2, 0.0));
+        e.add(verticalStripe);
 
         return e;
     }
 
-    /** TODO
+    /**
      * Create the letter H graphically
      * @return BaseShape containing the letter H
      */
     public static BaseShape create_H() {
         BaseShape h = new BaseShape();
 
-        Rectangle rectangleVer = new Rectangle(halfStripeThickness, maxHeight);
-        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(halfMaxWidth, 0.0));
+        Rectangle rectangleVer = new Rectangle(stripeThickness, maxHeight);
+        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(halfMaxWidth-halfStripeThickness, 0.0));
         h.add(rectangleVer);
 
-        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(maxWidth, 0.0));
+        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(-maxWidth, 0.0));
         h.add(rectangleVer);
 
         Rectangle rectangleHor = new Rectangle(maxWidth, stripeThickness);
-        rectangleHor.translate(rectangleHor.getCoords(), new Point2d(-halfMaxWidth, -halfStripeThickness));
         h.add(rectangleHor);
 
         return h;
@@ -126,21 +125,21 @@ public final class LetterFactory {
     public static BaseShape create_N() {
         BaseShape n = new BaseShape();
 
-        Rectangle rectangleDia = new Rectangle(halfStripeThickness, maxHeight);
-        rectangleDia.rotate(rectangleDia.getCoords(), (7*Math.PI)/4);
-        n.add(rectangleDia);
+        Rectangle diagStripe = new Rectangle(halfStripeThickness, maxHeight);
+        diagStripe.rotate(diagStripe.getCoords(), -0.4);
+        n.add(diagStripe);
 
-        Rectangle rectangleVer = new Rectangle(halfStripeThickness, maxHeight);
-        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(halfMaxWidth, 0.0));
-        n.add(rectangleVer);
+        Rectangle verticalStripe = new Rectangle(halfStripeThickness, maxHeight);
+        verticalStripe.translate(verticalStripe.getCoords(), new Point2d(halfMaxWidth, 0.0));
+        n.add(verticalStripe);
 
-        rectangleVer.translate(rectangleVer.getCoords(), new Point2d(maxWidth, 0.0));
-        n.add(rectangleVer);
+        verticalStripe.translate(verticalStripe.getCoords(), new Point2d(-maxWidth, 0.0));
+        n.add(verticalStripe);
 
         return n;
     }
 
-    /** TODO
+    /**
      * Create the letter O graphically
      * @return BaseShape containing the letter O
      */
