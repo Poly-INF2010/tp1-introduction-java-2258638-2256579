@@ -19,7 +19,7 @@ public class Transform implements Rotate, Translate {
         Collection<Point2d> colp2d = new ArrayList<>();
 
         for (Point2d temp : coords) {
-            colp2d.add(temp.rotate(Math.toRadians((angle))));
+            colp2d.add(temp.rotate(angle));
 
         }
 
