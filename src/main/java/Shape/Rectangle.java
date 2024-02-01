@@ -7,41 +7,34 @@ import java.util.Collection;
 public class Rectangle extends BaseShape {
     /**
      * Create a filled rectangle centered on (0, 0)
-     * @param width Width of the rectangle
+     *
+     * @param width  Width of the rectangle
      * @param height Height of the rectangle
      */
     public Rectangle(Double width, Double height) {
-        double nbrPtHor = width/0.5;
-        double nbrPtVert = height/0.5;
+        double nbrPtHor = width / 0.5;
+        double nbrPtVert = height / 0.5;
 
-        for (int i = 0; i < nbrPtVert; i++) {
-            for (int j = 0; j < nbrPtHor; j++) {
-                this.add(new Point2d(0.5 * j - width, 0.5 * i + height));
-
-//                this.getCoords().forEach(System.out::println);
+        for (int i = 0; i <= nbrPtVert; i++) {
+            for (int j = 0; j <= nbrPtHor; j++) {
+                this.add(new Point2d(0.5 * (j - width), 0.5 * (i - height)));
             }
         }
     }
 
     /**
      * Create a filled rectangle centered on (0, 0)
+     *
      * @param dimensions 2D point containing the width and height of the rectangle
      */
     public Rectangle(Point2d dimensions) {
-        double nbrPtHor = dimensions.X()/0.5;
-        double nbrPtVert = dimensions.Y()/0.5;
-
-        for (int i = 0; i < nbrPtVert; i++) {
-            for (int j = 0; j < nbrPtHor; j++) {
-                this.add(new Point2d(0.5 * j - dimensions.X(), 0.5 * i + dimensions.Y()));
-
-            }
-        }
+        this(dimensions.X(), dimensions.Y());
 
     }
 
     /**
      * Create a rectangle from a given collection of Points
+     *
      * @param coords The collection of 2D points
      */
     private Rectangle(Collection<Point2d> coords) {
