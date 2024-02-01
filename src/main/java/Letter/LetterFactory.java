@@ -63,9 +63,6 @@ public final class LetterFactory {
      * @return BaseShape containing the letter C
      */
     public static BaseShape create_C() {
-        BaseShape C = new BaseShape();
-
-        return C;
         BaseShape c = new BaseShape();
         Ellipse bigO = new Ellipse(maxWidth, maxHeight);
         Ellipse smallO = new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness);
