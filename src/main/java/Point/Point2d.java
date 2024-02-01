@@ -117,11 +117,6 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d clone() {
-        Double[] clone = new Double[vector.length];
-
-        System.arraycopy(this.vector, 0, clone, 0, vector.length);
-        Point2d newClone = new Point2d(clone);
-
-        return newClone;
+        return new Point2d(this.X(), this.Y());
     }
 }
