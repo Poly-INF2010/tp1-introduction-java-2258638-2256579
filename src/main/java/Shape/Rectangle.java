@@ -38,7 +38,7 @@ public class Rectangle extends BaseShape {
      * @param coords The collection of 2D points
      */
     private Rectangle(Collection<Point2d> coords) {
-
+        this.addAll(coords);
     }
 
     /**
