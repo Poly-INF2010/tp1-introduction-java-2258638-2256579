@@ -49,7 +49,7 @@ public class Point2d extends AbstractPoint {
      * @return Translated point
      */
     public Point2d translate(Point2d translateVector) {
-        PointOperator.translate(vector, translateVector.vector);
+        PointOperator.translate(this.vector, translateVector.vector);
         return this;
     }
 
